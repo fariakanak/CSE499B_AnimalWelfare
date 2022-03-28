@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:happy_tails/Screens/Adoption/adoption_home_screen.dart';
 import 'package:happy_tails/Screens/Animal%20Healthcare/animal_healthcare_home_screen.dart';
+import 'package:happy_tails/Screens/Sign%20Up/sign_up_category_screen.dart';
 import 'package:happy_tails/Screens/Welfare%20Services/welfare_services_home_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import '../../constants.dart';
@@ -76,12 +78,12 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
-      itemAnimationProperties: ItemAnimationProperties(
+      itemAnimationProperties: const ItemAnimationProperties(
         // Navigation Bar's items animation properties.
         duration: Duration(milliseconds: 200),
         curve: Curves.ease,
       ),
-      screenTransitionAnimation: ScreenTransitionAnimation(
+      screenTransitionAnimation: const ScreenTransitionAnimation(
         // Screen transition animation on change of selected tab.
         animateTabTransition: true,
         curve: Curves.ease,
@@ -143,12 +145,17 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 25,
               ),
-              const Text(
-                'Sign up & sign in to help this nobel cause!',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.0,
-                    color: Colors.white),
+              GestureDetector(
+                onTap: () {
+                  Get.to(() => const SignUPCategoryScreen());
+                },
+                child: const Text(
+                  'Sign up & sign in to help this noble cause!',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
+                      color: Colors.white),
+                ),
               ),
               const SizedBox(
                 height: 25,

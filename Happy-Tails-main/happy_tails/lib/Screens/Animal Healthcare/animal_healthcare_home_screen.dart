@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:happy_tails/Screens/Animal%20Healthcare/call_a_veterinarian_home_form_screen.dart';
 import 'package:happy_tails/Screens/Animal%20Healthcare/create_appointment_form_screen.dart';
-
+import 'package:happy_tails/Screens/Animal%20Healthcare/prescription_form_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AnimalHealthcareHomeScreen extends StatefulWidget {
   const AnimalHealthcareHomeScreen({Key? key}) : super(key: key);
@@ -280,201 +282,228 @@ class _AnimalHealthcareHomeScreenState
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Card(
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(12.0),
-                          ),
-                        ),
-                        elevation: 50,
-                        // shadowColor: Colors.black,
-                        color: Colors.white,
-                        child: SizedBox(
-                          width: 300,
-                          height: 300,
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Column(
-                              children: [
-                                Container(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Image.asset(
-                                      'Assets/Images/video-call.png',
-                                    ),
-                                  ),
-                                  decoration: const BoxDecoration(
-                                    color: kPrimary,
-                                    shape: BoxShape.circle,
-                                  ),
-                                ),
-                                // CircleAvatar(
-                                //   backgroundColor: kPrimary,
-                                //   radius: 40,
-                                //   foregroundImage: AssetImage(
-                                //       'Assets/Images/veterinarians.png'),
-                                // ),
-                                const SizedBox(
-                                  height: 10,
-                                ), //SizedBox
-                                const Text(
-                                  'Attend Appointment',
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    color: kSecondary,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.center, //Textstyle
-                                ), //Text
-                                const SizedBox(
-                                  height: 10,
-                                ), //SizedBox
-                                const Center(
-                                  child: Text(
-                                    "Once your preferred veterinarian accepts your appointment request, you can use your appointment ID to attend it via video call.",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w100,
-                                      color: kSecondary,
-                                    ),
-                                    textAlign: TextAlign.center, //Textstyle
-                                  ),
-                                ), //Text
-                              ],
-                            ), //Column
-                          ), //Padding
-                        ), //SizedBox
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Card(
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(12.0),
-                          ),
-                        ),
-                        elevation: 50,
-                        // shadowColor: Colors.black,
-                        color: Colors.white,
-                        child: SizedBox(
-                          width: 300,
-                          height: 300,
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Column(
-                              children: [
-                                Container(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Image.asset(
-                                      'Assets/Images/prescription.png',
-                                    ),
-                                  ),
-                                  decoration: const BoxDecoration(
-                                    color: kPrimary,
-                                    shape: BoxShape.circle,
-                                  ),
-                                ),
-                                // CircleAvatar(
-                                //   backgroundColor: kPrimary,
-                                //   radius: 40,
-                                //   foregroundImage: AssetImage(
-                                //       'Assets/Images/veterinarians.png'),
-                                // ),
-                                const SizedBox(
-                                  height: 10,
-                                ), //SizedBox
-                                const Text(
-                                  'Prescriptions',
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    color: kSecondary,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.center, //Textstyle
-                                ), //Text
-                                const SizedBox(
-                                  height: 10,
-                                ), //SizedBox
-                                const Center(
-                                  child: Text(
-                                    "Here you can access all the prescriptions your veterinarians have written for your beloved pet through Happy Tails.",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w100,
-                                      color: kSecondary,
-                                    ),
-                                    textAlign: TextAlign.center, //Textstyle
-                                  ),
-                                ), //Text
-                              ],
-                            ), //Column
-                          ), //Padding
-                        ), //SizedBox
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Card(
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(12.0),
-                          ),
-                        ),
-                        elevation: 50,
-                        // shadowColor: Colors.black,
-                        color: Colors.white,
-                        child: SizedBox(
-                          width: 300,
-                          height: 300,
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Column(
-                              children: [
-                                Container(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Image.asset(
-                                      'Assets/Images/locate.png',
-                                    ),
-                                  ),
-                                  decoration: const BoxDecoration(
-                                    color: kPrimary,
-                                    shape: BoxShape.circle,
-                                  ),
-                                ),
+                      child: GestureDetector(
+                        onTap: () async {
+                          var url =
+                              "https://video-app-4933-9049-dev.twil.io/login";
 
-                                const SizedBox(
-                                  height: 10,
-                                ), //SizedBox
-                                const Text(
-                                  'Locate a Veterinarian',
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    color: kSecondary,
-                                    fontWeight: FontWeight.bold,
+                          if (await canLaunch(url)) {
+                            await launch(url);
+                          } else {
+                            throw 'error launching $url';
+                          }
+                        },
+                        child: Card(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(12.0),
+                            ),
+                          ),
+                          elevation: 50,
+                          // shadowColor: Colors.black,
+                          color: Colors.white,
+                          child: SizedBox(
+                            width: 300,
+                            height: 300,
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: Image.asset(
+                                        'Assets/Images/video-call.png',
+                                      ),
+                                    ),
+                                    decoration: const BoxDecoration(
+                                      color: kPrimary,
+                                      shape: BoxShape.circle,
+                                    ),
                                   ),
-                                  textAlign: TextAlign.center, //Textstyle
-                                ), //Text
-                                const SizedBox(
-                                  height: 10,
-                                ), //SizedBox
-                                const Center(
-                                  child: Text(
-                                    "Need an emergency visit to a vet? Insert the veterinarian's provided address from our list & locate the clinic right here!",
+                                  // CircleAvatar(
+                                  //   backgroundColor: kPrimary,
+                                  //   radius: 40,
+                                  //   foregroundImage: AssetImage(
+                                  //       'Assets/Images/veterinarians.png'),
+                                  // ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ), //SizedBox
+                                  const Text(
+                                    'Attend Appointment',
                                     style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w100,
+                                      fontSize: 25,
                                       color: kSecondary,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                     textAlign: TextAlign.center, //Textstyle
+                                  ), //Text
+                                  const SizedBox(
+                                    height: 10,
+                                  ), //SizedBox
+                                  const Center(
+                                    child: Text(
+                                      "Once your preferred veterinarian accepts your appointment request, you can use your appointment ID to attend it via video call.",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w100,
+                                        color: kSecondary,
+                                      ),
+                                      textAlign: TextAlign.center, //Textstyle
+                                    ),
+                                  ), //Text
+                                ],
+                              ), //Column
+                            ), //Padding
+                          ), //SizedBox
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.to(() => const PrescriptionFormScreen());
+                        },
+                        child: Card(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(12.0),
+                            ),
+                          ),
+                          elevation: 50,
+                          // shadowColor: Colors.black,
+                          color: Colors.white,
+                          child: SizedBox(
+                            width: 300,
+                            height: 300,
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: Image.asset(
+                                        'Assets/Images/prescription.png',
+                                      ),
+                                    ),
+                                    decoration: const BoxDecoration(
+                                      color: kPrimary,
+                                      shape: BoxShape.circle,
+                                    ),
                                   ),
-                                ), //Text
-                              ],
-                            ), //Column
-                          ), //Padding
-                        ), //SizedBox
+                                  // CircleAvatar(
+                                  //   backgroundColor: kPrimary,
+                                  //   radius: 40,
+                                  //   foregroundImage: AssetImage(
+                                  //       'Assets/Images/veterinarians.png'),
+                                  // ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ), //SizedBox
+                                  const Text(
+                                    'Prescriptions',
+                                    style: TextStyle(
+                                      fontSize: 25,
+                                      color: kSecondary,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center, //Textstyle
+                                  ), //Text
+                                  const SizedBox(
+                                    height: 10,
+                                  ), //SizedBox
+                                  const Center(
+                                    child: Text(
+                                      "Here you can access all the prescriptions your veterinarians have written for your beloved pet through Happy Tails.",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w100,
+                                        color: kSecondary,
+                                      ),
+                                      textAlign: TextAlign.center, //Textstyle
+                                    ),
+                                  ), //Text
+                                ],
+                              ), //Column
+                            ), //Padding
+                          ), //SizedBox
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GestureDetector(
+                        onTap: () async {
+                          String googleUrl = 'https://www.google.com/maps/';
+                          if (await canLaunch(googleUrl) != null) {
+                            await launch(googleUrl);
+                          } else {
+                            throw 'Could not open the map.';
+                          }
+                        },
+                        child: Card(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(12.0),
+                            ),
+                          ),
+                          elevation: 50,
+                          // shadowColor: Colors.black,
+                          color: Colors.white,
+                          child: SizedBox(
+                            width: 300,
+                            height: 300,
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: Image.asset(
+                                        'Assets/Images/locate.png',
+                                      ),
+                                    ),
+                                    decoration: const BoxDecoration(
+                                      color: kPrimary,
+                                      shape: BoxShape.circle,
+                                    ),
+                                  ),
+
+                                  const SizedBox(
+                                    height: 10,
+                                  ), //SizedBox
+                                  const Text(
+                                    'Locate a Veterinarian',
+                                    style: TextStyle(
+                                      fontSize: 25,
+                                      color: kSecondary,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center, //Textstyle
+                                  ), //Text
+                                  const SizedBox(
+                                    height: 10,
+                                  ), //SizedBox
+                                  const Center(
+                                    child: Text(
+                                      "Need an emergency visit to a vet? Insert the veterinarian's provided address from our list & locate the clinic right here!",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w100,
+                                        color: kSecondary,
+                                      ),
+                                      textAlign: TextAlign.center, //Textstyle
+                                    ),
+                                  ), //Text
+                                ],
+                              ), //Column
+                            ), //Padding
+                          ), //SizedBox
+                        ),
                       ),
                     ),
                   ],
